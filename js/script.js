@@ -23,6 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * 0. Open KakaoTalk App & Copy Account
+ * Launches KakaoTalk app on mobile and copies the ID/email to clipboard for instant search/add
+ */
+function openKakaoTalk(account = 'wm11@kakao.com') {
+  // Copy KakaoTalk account to clipboard
+  copyToClipboard(account, 'KakaoTalk account copied: ' + account);
+
+  // Check if mobile device
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    // Attempt to launch KakaoTalk app scheme
+    setTimeout(() => {
+      window.location.href = 'kakaotalk://';
+    }, 300);
+  } else {
+    // On desktop, open Kakao website or alert
+    setTimeout(() => {
+      showToast('KakaoTalk account copied: ' + account);
+    }, 100);
+  }
+}
+
+/**
  * 1. Download vCard (vCard 3.0) directly to phone's address book
  */
 function downloadVCard() {

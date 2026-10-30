@@ -83,12 +83,12 @@
         </a>
 
         <!-- KakaoTalk -->
-        <a href="javascript:void(0)" onclick="copyToClipboard('wm11@kakao.com', 'KakaoTalk ID copied: wm11@kakao.com')" class="quick-btn btn-kakao" aria-label="KakaoTalk Contact">
+        <a href="javascript:void(0)" onclick="openKakaoTalk('wm11@kakao.com')" class="quick-btn btn-kakao" aria-label="KakaoTalk Contact">
           <div class="btn-icon-box">
             <i class="fa-solid fa-comment"></i>
           </div>
           <span class="btn-label">KakaoTalk</span>
-          <span class="btn-sub">wm11@kakao.com</span>
+          <span class="btn-sub">Open App & Copy</span>
         </a>
 
         <!-- SMS -->
@@ -149,9 +149,14 @@
               <span class="info-label">KakaoTalk Account</span>
               <div class="info-val-wrap">
                 <span class="info-val font-kakao">wm11@kakao.com</span>
-                <button type="button" class="btn-copy" onclick="copyToClipboard('wm11@kakao.com', 'KakaoTalk ID copied.')" aria-label="Copy KakaoTalk ID">
-                  <i class="fa-regular fa-copy"></i> Copy
-                </button>
+                <div class="btn-group-row">
+                  <button type="button" class="btn-copy btn-kakao-open" onclick="openKakaoTalk('wm11@kakao.com')" aria-label="Open KakaoTalk">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open
+                  </button>
+                  <button type="button" class="btn-copy" onclick="copyToClipboard('wm11@kakao.com', 'KakaoTalk account copied.')" aria-label="Copy KakaoTalk ID">
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                </div>
               </div>
             </div>
           </div>

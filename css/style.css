@@ -499,6 +499,22 @@ html, body {
   margin-top: 0.2rem;
 }
 
+.btn-group-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-kakao-open {
+  background: rgba(254, 229, 0, 0.15);
+  border-color: rgba(254, 229, 0, 0.35);
+  color: #facc15;
+}
+
+.btn-kakao-open:active {
+  background: rgba(254, 229, 0, 0.3);
+}
+
 /* 복사 버튼 공통 */
 .btn-copy {
   min-height: 32px;
