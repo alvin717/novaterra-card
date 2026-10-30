@@ -1,17 +1,11 @@
 /**
- * 양욱모 부회장 모바일 명함 인터랙션 스크립트 (Vanilla JavaScript)
- * 
- * 주요 기능:
- * 1. 스마트폰 연락처 바로 저장 (vCard .vcf 동적 생성 및 다운로드)
- * 2. 원클릭 클립보드 복사 (전화번호, 이메일, 주소 등) & 안내 토스트 팝업
- * 3. 스마트폰 모바일 명함 공유하기 (Web Share API 및 URL 복사)
- * 4. 원본 실물 명함 이미지 확대 팝업 모달
- * 5. 현장 전달용 QR 코드 모달 생성
+ * WOOG MO YANG | Vice President | NOVATERRA GLOBAL
+ * Mobile Business Card Interactions (Vanilla JavaScript)
  */
 
-// 문서 로드 완료 시 초기화
+// Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // 모바일 뷰포트 높이 보정 (iOS 사파리 등의 상/하단 바 계산 오류 방지)
+  // Mobile viewport height fix for mobile browsers
   const setVh = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -19,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setVh();
   window.addEventListener('resize', setVh);
 
-  // ESC 키 누를 때 열려있는 모든 모달 닫기
+  // Close modals on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeOriginalModalDirect();
@@ -29,51 +23,49 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. 스마트폰 연락처에 바로 저장 (vCard 3.0 다운로드)
- * 사용자가 버튼을 누르면 스마트폰의 연락처 앱이 열려 즉시 저장할 수 있습니다.
+ * 1. Download vCard (vCard 3.0) directly to phone's address book
  */
 function downloadVCard() {
   const vCardData = [
     'BEGIN:VCARD',
     'VERSION:3.0',
-    'N;CHARSET=UTF-8:양;욱모;;;',
-    'FN;CHARSET=UTF-8:양욱모 부회장',
-    'ORG;CHARSET=UTF-8:주식회사 노바테라글로벌;NOVATERRA GLOBAL',
-    'TITLE;CHARSET=UTF-8:부회장 (Vice Chairman)',
+    'N;CHARSET=UTF-8:YANG;WOOG MO;;;',
+    'FN;CHARSET=UTF-8:WOOG MO YANG',
+    'ORG;CHARSET=UTF-8:NOVATERRA GLOBAL Co., Ltd.',
+    'TITLE;CHARSET=UTF-8:Vice President',
     'TEL;TYPE=CELL,VOICE:+821077692515',
     'EMAIL;TYPE=WORK,INTERNET:od@novaterraglobal.co.kr',
     'URL:http://www.novaterraglobal.co.kr',
-    'ADR;TYPE=WORK;CHARSET=UTF-8:;;서울시 송파구 법원로4길 5 124호;Seoul;;05855;Korea',
-    'NOTE;CHARSET=UTF-8:GLOBAL BUSINESS PARTNER - 노바테라글로벌',
+    'ADR;TYPE=WORK;CHARSET=UTF-8:;;124, 5, Beobwon-ro 4-gil, Songpa-gu;Seoul;;05855;Korea',
+    'X-KAKAO:wm11@kakao.com',
+    'NOTE;CHARSET=UTF-8:KakaoTalk: wm11@kakao.com | GLOBAL BUSINESS PARTNER - NOVATERRA GLOBAL',
     'END:VCARD'
   ].join('\r\n');
 
-  // Blob 객체 생성 (UTF-8 인코딩)
+  // Create UTF-8 Blob
   const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
 
-  // 가상 링크를 생성하여 다운로드 실행
+  // Virtual link trigger download
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', '양욱모_부회장_노바테라글로벌.vcf');
+  link.setAttribute('download', 'WOOG_MO_YANG_NOVATERRA.vcf');
   document.body.appendChild(link);
   link.click();
 
-  // 메모리 정리
   setTimeout(() => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast('연락처 파일이 다운로드되었습니다. 스마트폰 전화번호부에 추가해주세요.');
+    showToast('Contact file downloaded. Add to your contacts.');
   }, 150);
 }
 
 /**
- * 2. 클립보드 복사 함수 (전화번호, 주소, 계좌 등)
- * 최신 Clipboard API와 구형 브라우저 대응 execCommand를 함께 지원합니다.
- * @param {string} text - 복사할 문자열
- * @param {string} message - 복사 후 나타낼 알림 문구
+ * 2. Copy to Clipboard
+ * @param {string} text - text to copy
+ * @param {string} message - toast message
  */
-function copyToClipboard(text, message = '클립보드에 복사되었습니다.') {
+function copyToClipboard(text, message = 'Copied to clipboard.') {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(text)
       .then(() => showToast(message))
@@ -83,7 +75,6 @@ function copyToClipboard(text, message = '클립보드에 복사되었습니다.
   }
 }
 
-// 구형 브라우저용 클립보드 복사 보조 함수
 function fallbackCopy(text, message) {
   const textArea = document.createElement('textarea');
   textArea.value = text;
@@ -98,16 +89,14 @@ function fallbackCopy(text, message) {
     document.execCommand('copy');
     showToast(message);
   } catch (err) {
-    showToast('복사에 실패했습니다. 직접 선택하여 복사해주세요.');
+    showToast('Failed to copy. Please select and copy manually.');
   }
 
   document.body.removeChild(textArea);
 }
 
 /**
- * 3. 토스트 알림창 띄우기
- * 화면 하단에 2.5초 동안 부드럽게 나타났다가 사라집니다.
- * @param {string} message - 표시할 텍스트
+ * 3. Toast Notification
  */
 let toastTimeout = null;
 function showToast(message) {
@@ -129,41 +118,36 @@ function showToast(message) {
 }
 
 /**
- * 4. 모바일 명함 공유하기
- * 스마트폰의 경우 카카오톡, 메시지 등으로 바로 공유하는 네이티브 공유창을 띄우고,
- * PC 브라우저의 경우 웹페이지 주소를 클립보드에 복사해줍니다.
+ * 4. Share Business Card
  */
 function shareBusinessCard() {
   const shareData = {
-    title: '양욱모 부회장 모바일 명함 | 노바테라글로벌',
-    text: '주식회사 노바테라글로벌 양욱모 부회장의 디지털 모바일 명함입니다.',
+    title: 'WOOG MO YANG | Vice President - NOVATERRA GLOBAL',
+    text: 'Digital Business Card of WOOG MO YANG (Vice President at NOVATERRA GLOBAL)',
     url: window.location.href
   };
 
-  // 모바일 기기의 네이티브 공유 창 지원 여부 확인
   if (navigator.share) {
     navigator.share(shareData)
-      .then(() => console.log('공유 성공'))
+      .then(() => console.log('Share successful'))
       .catch((err) => {
-        // 사용자가 취소한 것이 아닐 경우 복사로 전환
         if (err.name !== 'AbortError') {
-          copyToClipboard(window.location.href, '모바일 명함 링크가 복사되었습니다.');
+          copyToClipboard(window.location.href, 'Card link copied to clipboard.');
         }
       });
   } else {
-    // PC 또는 미지원 환경에서는 URL 자동 복사
-    copyToClipboard(window.location.href, '모바일 명함 주소가 복사되었습니다. 원하는 곳에 붙여넣기 하세요.');
+    copyToClipboard(window.location.href, 'Card link copied to clipboard.');
   }
 }
 
 /**
- * 5. 원본 실물 명함 확대 모달 제어
+ * 5. Original Business Card Modal
  */
 function openOriginalModal() {
   const modal = document.getElementById('originalModal');
   if (modal) {
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+    document.body.style.overflow = 'hidden';
   }
 }
 
@@ -176,21 +160,19 @@ function closeOriginalModalDirect() {
 }
 
 function closeOriginalModal(event) {
-  // 모달 윈도우 내부 클릭 시 닫히지 않고, 어두운 바깥 배경 클릭 시에만 닫힘
   if (event.target.id === 'originalModal') {
     closeOriginalModalDirect();
   }
 }
 
 /**
- * 6. QR 코드 모달 제어 (현장에서 상대방에게 명함 찍어줄 때 사용)
+ * 6. QR Code Modal
  */
 function openQRModal() {
   const modal = document.getElementById('qrModal');
   const qrImage = document.getElementById('qrImage');
 
   if (modal && qrImage) {
-    // 현재 URL 또는 공식 사이트 URL을 QR 코드로 생성
     const targetUrl = encodeURIComponent(window.location.href);
     qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${targetUrl}&margin=5`;
 
@@ -212,4 +194,3 @@ function closeQRModal(event) {
     closeQRModalDirect();
   }
 }
-

@@ -251,27 +251,35 @@ html, body {
   align-items: baseline;
   justify-content: center;
   gap: 0.6rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .person-name {
-  font-size: clamp(1.6rem, 6vw, 1.85rem);
-  font-weight: 700;
+  font-family: var(--font-brand);
+  font-size: clamp(1.6rem, 6vw, 1.95rem);
+  font-weight: 800;
   color: #ffffff;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
 }
 
-.person-title {
-  font-size: 1.05rem;
-  font-weight: 600;
+.person-title-badge {
+  display: inline-block;
+  font-size: 1.02rem;
+  font-weight: 700;
   color: var(--gold-light);
+  letter-spacing: 1px;
+  margin-bottom: 0.35rem;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.2rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
-.person-title small {
-  font-size: 0.8rem;
-  color: var(--text-sub);
-  font-weight: 400;
-  margin-left: 0.2rem;
+.company-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
 }
 
 .company-affiliation {
@@ -291,12 +299,17 @@ html, body {
   line-height: 1.5;
 }
 
-/* 6. 빠른 연락처 액션 버튼 그리드 (4분할) */
+/* 6. 빠른 연락처 액션 버튼 그리드 (Quick Actions) */
 .quick-contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
   padding: 1rem 1.25rem;
+}
+
+/* 5번째 버튼 전체 너비 */
+.quick-contact-grid .quick-btn:last-child {
+  grid-column: span 2;
 }
 
 .quick-btn {
@@ -340,6 +353,14 @@ html, body {
   border-color: rgba(16, 185, 129, 0.35);
 }
 
+.btn-kakao .btn-icon-box {
+  background: rgba(254, 229, 0, 0.15);
+  color: #facc15;
+}
+.btn-kakao {
+  border-color: rgba(254, 229, 0, 0.35);
+}
+
 .btn-sms .btn-icon-box {
   background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
@@ -353,6 +374,22 @@ html, body {
 .btn-web .btn-icon-box {
   background: rgba(168, 85, 247, 0.15);
   color: #c084fc;
+}
+
+.icon-kakao-bg {
+  background: rgba(254, 229, 0, 0.12) !important;
+  color: #facc15 !important;
+}
+
+.font-kakao {
+  color: #fef08a !important;
+}
+
+.kor-addr {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
 }
 
 .btn-label {
