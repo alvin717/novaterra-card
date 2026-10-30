@@ -1,0 +1,127 @@
+- generic [active] [ref=e1]:
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: GLOBAL BUSINESS PARTNER
+      - generic [ref=e7]:
+        - heading "NOVATERRA GLOBAL" [level=1] [ref=e8]
+        - paragraph [ref=e9]: 주식회사 노바테라글로벌
+      - generic [ref=e10]:
+        - img "양욱모 부회장 프로필 사진" [ref=e12]
+        - generic "공식 비즈니스 인증" [ref=e13]: 
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - heading "양 욱 모" [level=2] [ref=e17]
+        - generic [ref=e18]: 부회장 Vice Chairman
+      - paragraph [ref=e19]: 주식회사 노바테라글로벌 / NOVATERRA GLOBAL Co., Ltd.
+      - paragraph [ref=e20]: “신뢰와 혁신을 바탕으로 최적의 글로벌 비즈니스 솔루션을 제공합니다.”
+    - region "빠른 연락처" [ref=e21]:
+      - link "양욱모 부회장에게 전화 걸기" [ref=e22] [cursor=pointer]:
+        - /url: tel:010-7769-2515
+        - generic [ref=e23]: 
+        - generic [ref=e25]: 전화걸기
+        - generic [ref=e26]: 010-7769-2515
+      - link "양욱모 부회장에게 문자 보내기" [ref=e27] [cursor=pointer]:
+        - /url: sms:010-7769-2515
+        - generic [ref=e28]: 
+        - generic [ref=e30]: 문자보내기
+        - generic [ref=e31]: 실시간 전송
+      - link "이메일 작성하기" [ref=e32] [cursor=pointer]:
+        - /url: mailto:od@novaterraglobal.co.kr
+        - generic [ref=e33]: 
+        - generic [ref=e35]: 이메일
+        - generic [ref=e36]: 문의 및 제휴
+      - link "공식 홈페이지 방문" [ref=e37] [cursor=pointer]:
+        - /url: http://www.novaterraglobal.co.kr
+        - generic [ref=e38]: 
+        - generic [ref=e40]: 홈페이지
+        - generic [ref=e41]: 공식 웹사이트
+    - generic [ref=e42]:
+      - heading "비즈니스 정보" [level=3] [ref=e43]
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]: 
+          - generic [ref=e48]:
+            - generic [ref=e49]: 직통 번호 (Mobile)
+            - generic [ref=e50]:
+              - link "+82 10 7769 2515" [ref=e51] [cursor=pointer]:
+                - /url: tel:010-7769-2515
+              - button "전화번호 복사" [ref=e52] [cursor=pointer]:
+                - generic [ref=e53]: 
+                - text: 복사
+        - generic [ref=e54]:
+          - generic [ref=e55]: "@"
+          - generic [ref=e57]:
+            - generic [ref=e58]: 대표 이메일 (E-mail)
+            - generic [ref=e59]:
+              - link "od@novaterraglobal.co.kr" [ref=e60] [cursor=pointer]:
+                - /url: mailto:od@novaterraglobal.co.kr
+              - button "이메일 복사" [ref=e61] [cursor=pointer]:
+                - generic [ref=e62]: 
+                - text: 복사
+        - generic [ref=e63]:
+          - generic [ref=e64]: 
+          - generic [ref=e66]:
+            - generic [ref=e67]: 공식 웹사이트 (Website)
+            - generic [ref=e68]:
+              - link "www.novaterraglobal.co.kr" [ref=e69] [cursor=pointer]:
+                - /url: http://www.novaterraglobal.co.kr
+              - button "웹사이트 복사" [ref=e70] [cursor=pointer]:
+                - generic [ref=e71]: 
+                - text: 복사
+        - generic [ref=e72]:
+          - generic [ref=e73]: 
+          - generic [ref=e75]:
+            - generic [ref=e76]: 오피스 위치 (Location)
+            - paragraph [ref=e77]:
+              - text: 서울시 송파구 법원로4길 5 124호
+              - generic [ref=e78]: 124, 5, Beobwon-ro 4-gil, Songpa-gu, Seoul, 05855, Korea
+            - generic [ref=e79]:
+              - button " 주소 복사" [ref=e80] [cursor=pointer]:
+                - generic [ref=e81]: 
+                - text: 주소 복사
+              - link " 네이버 지도" [ref=e82] [cursor=pointer]:
+                - /url: https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%8B%9C%20%EC%86%A1%ED%8C%8C%EA%B5%AC%20%EB%B2%95%EC%9B%90%EB%A1%9C4%EA%B8%B8%205
+                - generic [ref=e83]: 
+                - text: 네이버 지도
+              - link " 카카오 맵" [ref=e84] [cursor=pointer]:
+                - /url: https://map.kakao.com/link/search/서울시 송파구 법원로4길 5
+                - generic [ref=e85]: 
+                - text: 카카오 맵
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - heading "실물 명함 미리보기" [level=3] [ref=e88]
+        - button " 원본 크게보기" [ref=e89] [cursor=pointer]:
+          - generic [ref=e90]: 
+          - text: 원본 크게보기
+      - generic [ref=e91] [cursor=pointer]:
+        - img "양욱모 부회장 실물 명함 원본 이미지" [ref=e92]
+        - generic [ref=e94]:
+          - generic [ref=e95]: 
+          - text: 터치하여 원본 명함 크게보기
+    - generic [ref=e96]:
+      - heading "스마트폰 명함 보관" [level=3] [ref=e97]
+      - paragraph [ref=e98]: 버튼 한 번으로 연락처를 스마트폰 전화번호부에 바로 저장하거나 다른 분께 공유할 수 있습니다.
+      - generic [ref=e99]:
+        - button " 연락처 스마트폰에 저장 (vCard)" [ref=e100] [cursor=pointer]:
+          - generic [ref=e101]: 
+          - generic [ref=e102]: 연락처 스마트폰에 저장 (vCard)
+        - generic [ref=e103]:
+          - button " 명함 공유하기" [ref=e104] [cursor=pointer]:
+            - generic [ref=e105]: 
+            - text: 명함 공유하기
+          - button " QR 코드" [ref=e106] [cursor=pointer]:
+            - generic [ref=e107]: 
+            - text: QR 코드
+    - generic [ref=e108]:
+      - paragraph [ref=e109]: © NOVATERRA GLOBAL Co., Ltd. All rights reserved.
+      - paragraph [ref=e110]: 본 모바일 명함은 스마트폰 화면에 최적화되어 있습니다.
+  - complementary "하단 고정 통화 바" [ref=e112]:
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - generic [ref=e115]: DIRECT CALL
+        - generic [ref=e116]: 양욱모 부회장 직통 연결
+      - link "전화걸기" [ref=e117] [cursor=pointer]:
+        - /url: tel:010-7769-2515
+        - generic [ref=e118]: 
+        - generic [ref=e119]: 통화하기
+  - text:  

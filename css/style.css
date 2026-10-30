@@ -1,0 +1,902 @@
+/* ==========================================================================
+   양욱모 부회장 모바일 명함 스타일시트 (Mobile-First CSS)
+   - 모바일 퍼스트(Mobile-First): 375px ~ 390px 스마트폰 화면 기준 설계
+   - 색상 테마: 럭셔리 다크 네이비 & 프리미엄 샴페인 골드
+   - 가로 스크롤 방지 및 유연한 반응형 레이아웃 채택
+   ========================================================================== */
+
+/* 1. 디자인 시스템 변수 정의 */
+:root {
+  /* 메인 색상 팔레트 */
+  --bg-dark-base: #070b14;
+  --bg-card: #0c1322;
+  --bg-card-sub: #121c32;
+  --bg-card-glass: rgba(18, 28, 50, 0.75);
+
+  /* 골드 포인트 색상 (고급스러운 샴페인 골드 그라데이션) */
+  --gold-primary: #d4af37;
+  --gold-light: #f7df94;
+  --gold-dark: #aa8022;
+  --gold-gradient: linear-gradient(135deg, #fce49f 0%, #d4af37 50%, #996515 100%);
+  --gold-gradient-soft: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
+
+  /* 텍스트 색상 */
+  --text-main: #f3f4f6;
+  --text-sub: #9ca3af;
+  --text-muted: #6b7280;
+  --text-gold: #e5c07b;
+
+  /* 테두리 및 그림자 */
+  --border-gold: rgba(212, 175, 55, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.2);
+  --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.55);
+
+  /* 폰트 패밀리 */
+  --font-base: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --font-brand: 'Montserrat', 'Pretendard', sans-serif;
+
+  /* 여백 및 크기 기준 */
+  --touch-target-min: 44px; /* 모바일 터치 최소 규격 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+/* 2. 전역 리셋 & 기본 세팅 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 가로 스크롤 방지 및 박스 모델 일원화 */
+  -webkit-tap-highlight-color: transparent; /* 모바일 터치 시 깜빡임 제거 */
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-base);
+  background-color: var(--bg-dark-base);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden; /* 모바일 가로 스크롤 방지 필수 규칙 */
+  font-size: 16px;
+  word-break: keep-all; /* 한글 단어 줄바꿈 자연스럽게 */
+  word-wrap: break-word;
+}
+
+/* 3. 전체 레이아웃 래퍼 */
+.card-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: radial-gradient(circle at 50% 0%, #15223c 0%, #070b14 70%);
+  padding: 0;
+}
+
+/* 메인 모바일 명함 컨테이너 */
+.business-card {
+  width: 100%;
+  max-width: 480px; /* 스마트폰 기본 너비 ~ 데스크톱 중앙 뷰 */
+  min-height: 100vh;
+  background-color: var(--bg-card);
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. 상단 프리미엄 헤더 & 브랜딩 */
+.card-header {
+  position: relative;
+  background: linear-gradient(180deg, #101c36 0%, #0c1322 100%);
+  padding: 2.2rem 1.25rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-gold);
+  overflow: hidden;
+}
+
+/* 회로 기판 느낌의 배경 패턴 데코 */
+.header-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(var(--border-gold) 1px, transparent 1px),
+    linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px, 40px 40px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* 글로벌 비즈니스 파트너 뱃지 */
+.header-badges {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.85rem;
+}
+
+.badge-global {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  font-family: var(--font-brand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+/* 회사 로고 및 사명 */
+.company-brand {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.25rem;
+}
+
+.company-eng {
+  font-family: var(--font-brand);
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.25);
+  margin-bottom: 0.2rem;
+}
+
+.company-kor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+}
+
+/* 메인 비주얼 배너 컨테이너 (제공해주신 원본 이미지 전체 사용) */
+.main-banner-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.main-banner-container:active {
+  transform: scale(0.98);
+}
+
+.banner-frame {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  padding: 3px;
+  background: var(--gold-gradient);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.25);
+  overflow: hidden;
+}
+
+.main-banner-img {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-md) - 3px);
+  display: block;
+  object-fit: contain;
+  background-color: #0c1322;
+  transition: transform 0.35s ease;
+}
+
+.main-banner-container:hover .main-banner-img {
+  transform: scale(1.02);
+}
+
+/* 터치 확대 안내 태그 */
+.banner-expand-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(12, 19, 34, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* 공식 비즈니스 인증 배지 */
+.verified-badge-banner {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  padding: 0.25rem 0.65rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1.5px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+/* 5. 인물 정보 섹션 */
+.identity-section {
+  padding: 1.25rem 1.25rem 0.75rem;
+  text-align: center;
+}
+
+.name-block {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.person-name {
+  font-size: clamp(1.6rem, 6vw, 1.85rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.person-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.person-title small {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  font-weight: 400;
+  margin-left: 0.2rem;
+}
+
+.company-affiliation {
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  margin-bottom: 0.75rem;
+}
+
+.vision-text {
+  font-size: 0.86rem;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gold-primary);
+  display: inline-block;
+  line-height: 1.5;
+}
+
+/* 6. 빠른 연락처 액션 버튼 그리드 (4분할) */
+.quick-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-target-min); /* 44px 이상 터치 규격 */
+  padding: 0.9rem 0.6rem;
+  background: var(--bg-card-sub);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.quick-btn:active {
+  transform: scale(0.97);
+  background: #182542;
+}
+
+.btn-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.45rem;
+}
+
+/* 버튼별 아이콘 테마 컬러 */
+.btn-call .btn-icon-box {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+.btn-call {
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.btn-sms .btn-icon-box {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.btn-email .btn-icon-box {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light);
+}
+
+.btn-web .btn-icon-box {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+}
+
+.btn-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.btn-sub {
+  font-size: 0.72rem;
+  color: var(--text-sub);
+}
+
+/* 7. 상세 비즈니스 정보 리스트 */
+.details-section {
+  padding: 1rem 1.25rem;
+}
+
+.section-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1rem;
+  background: var(--gold-gradient);
+  border-radius: 2px;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: var(--bg-card-sub);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+}
+
+.info-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  margin-bottom: 0.2rem;
+}
+
+.info-val-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.info-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.info-val:hover {
+  color: var(--gold-light);
+}
+
+.text-address {
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+
+.eng-addr {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* 복사 버튼 공통 */
+.btn-copy {
+  min-height: 32px;
+  padding: 0.25rem 0.65rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: var(--gold-light);
+  font-size: 0.76rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-copy:active {
+  background: rgba(212, 175, 55, 0.25);
+}
+
+/* 주소 액션 버튼들 */
+.address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.btn-action-small {
+  min-height: var(--touch-target-min);
+  padding: 0.45rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.btn-action-small:active {
+  background: rgba(212, 175, 55, 0.2);
+  color: #ffffff;
+}
+
+.btn-map {
+  color: var(--gold-light);
+  border-color: var(--border-gold);
+}
+
+/* 8. 명함 전달 및 스마트폰 저장 액션 섹션 */
+.share-action-section {
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+.share-guide-text {
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  margin-bottom: 0.95rem;
+  line-height: 1.45;
+}
+
+.action-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* vCard 스마트폰 연락처 저장 버튼 */
+.btn-main-action {
+  width: 100%;
+  min-height: 52px; /* 여유로운 터치 영역 */
+  background: var(--gold-gradient);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #070b14;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: var(--shadow-gold);
+  transition: transform 0.15s ease;
+}
+
+.btn-main-action:active {
+  transform: scale(0.98);
+}
+
+.sub-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.btn-secondary-action {
+  min-height: 46px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  color: var(--gold-light);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-action:active {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+/* 9. 하단 푸터 */
+.card-footer {
+  padding: 1.5rem 1.25rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  background-color: #090e1a;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.footer-note {
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+/* 하단 플로팅 바 가림 방지 여백 */
+.bottom-spacer {
+  height: 80px;
+  width: 100%;
+}
+
+/* 10. 화면 하단 고정 전화 상담 플로팅 바 (Mobile Sticky Call Bar) */
+.floating-contact-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: rgba(12, 19, 34, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-gold);
+  padding: 0.65rem 1.25rem;
+  z-index: 100;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.floating-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.floating-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-badge {
+  font-size: 0.65rem;
+  color: var(--gold-light);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.floating-name {
+  font-size: 0.88rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.floating-call-btn {
+  min-height: var(--touch-target-min);
+  min-width: 120px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+  animation: pulseButton 2.2s infinite;
+}
+
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* 11. 모달 팝업 레이아웃 (공통) */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-window {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  animation: scaleUp 0.25s ease-out;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.15rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: #111a2e;
+}
+
+.modal-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.btn-modal-close {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  color: var(--text-sub);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-modal-close:hover {
+  color: #ffffff;
+}
+
+.modal-body {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.modal-footer {
+  padding: 0.65rem;
+  background: #090f1d;
+  text-align: center;
+}
+
+.modal-caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* QR 코드 모달 전용 스타일 */
+.qr-window {
+  max-width: 340px;
+}
+
+.qr-body {
+  padding: 1.5rem 1.25rem;
+}
+
+.qr-code-box {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.2rem;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.qr-help-text {
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+/* 12. 토스트 팝업 (클립보드 복사 알림) */
+.toast-popup {
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #1f293d;
+  border: 1px solid var(--border-gold);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 300;
+  white-space: nowrap;
+}
+
+.toast-popup i {
+  color: #10b981;
+}
+
+.toast-popup.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 13. 반응형 미디어 쿼리 (GEMINI.md 표준 준수) */
+@media screen and (min-width: 768px) {
+  .card-wrapper {
+    padding: 2rem 0;
+  }
+
+  .business-card {
+    min-height: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-gold);
+  }
+
+  .floating-contact-bar {
+    border-radius: var(--radius-full);
+    bottom: 1.5rem;
+    width: 440px;
+    border: 1px solid var(--border-gold);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card-wrapper {
+    padding: 3rem 0;
+  }
+
+  .business-card {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.15);
+  }
+
+  .quick-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-gold);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-main-action:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-action:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold-light);
+  }
+
+  .main-banner-container:hover {
+    transform: translateY(-2px);
+  }
+}
