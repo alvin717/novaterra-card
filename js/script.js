@@ -60,8 +60,8 @@ function downloadVCard() {
     'EMAIL;TYPE=WORK,INTERNET:od@novaterraglobal.co.kr',
     'URL:http://www.novaterraglobal.co.kr',
     'ADR;TYPE=WORK;CHARSET=UTF-8:;;124, 5, Beobwon-ro 4-gil, Songpa-gu;Seoul;;05855;Korea',
-    'X-KAKAO:https://open.kakao.com/o/snLg99Ui',
-    'NOTE;CHARSET=UTF-8:KakaoTalk 1:1 Chat: https://open.kakao.com/o/snLg99Ui (wm11@kakao.com) | GLOBAL BUSINESS PARTNER - NOVATERRA GLOBAL',
+    'X-KAKAO:https://open.kakao.com/o/snLq99Ui',
+    'NOTE;CHARSET=UTF-8:KakaoTalk 1:1 Chat: https://open.kakao.com/o/snLq99Ui (wm11@kakao.com) | GLOBAL BUSINESS PARTNER - NOVATERRA GLOBAL',
     'END:VCARD'
   ].join('\r\n');
 
