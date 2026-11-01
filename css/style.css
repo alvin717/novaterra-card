@@ -509,10 +509,18 @@ html, body {
   background: rgba(254, 229, 0, 0.15);
   border-color: rgba(254, 229, 0, 0.35);
   color: #facc15;
+  text-decoration: none;
 }
 
 .btn-kakao-open:active {
   background: rgba(254, 229, 0, 0.3);
+}
+
+.kakao-sub-id {
+  display: block;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
 /* 복사 버튼 공통 */
